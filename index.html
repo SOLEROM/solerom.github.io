@@ -239,17 +239,6 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
 .pitch.reply { display:flex; gap:.6rem; align-items:flex-start; }
 .pitch.reply .bullet { flex:none; color:var(--claude); line-height:var(--leading-body); }
 .term-foot .accept { color:var(--claude); letter-spacing:-.06em; margin-right:.15rem; }
-
-/* claude-code system-notification bar (hero foot) */
-.cc-notify { margin:1.9rem 0 0; padding:.1rem 0 .1rem 1rem; border-left:3px solid var(--claude); display:flex; flex-direction:column; gap:.34rem; }
-.cc-notify-head { margin:0; font-family:var(--font-mono); font-size:var(--text-sm); line-height:1.55; color:var(--fg); }
-.cc-notify-head b { color:var(--green-200); font-weight:600; }
-.cc-notify .cmd { color:var(--claude-soft); font-weight:600; }
-.cc-notify a.cmd:hover { text-decoration:underline; }
-.cc-notify-sub { margin:0; font-family:var(--font-mono); font-size:var(--text-xs); line-height:1.5; color:var(--faint); }
-.cc-notify-sub .tee { color:var(--border-strong); margin-right:.25rem; }
-.cc-notify-sub .accept { color:var(--claude); letter-spacing:-.06em; margin-right:.25rem; }
-.cc-notify-sub .ok { color:var(--status-ok); margin-right:.2rem; }
 @media (max-width:560px){ .term-mark{ font-size:1.9rem; } }
 
 /* ── stat tiles ──────────────────────────────────────── */
@@ -476,13 +465,6 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
         <span class="badge">israel · on-site / hybrid</span>
         <span class="badge ok">defense clearance — asset</span>
       </div>
-
-      <!-- claude-code system notification -->
-      <div class="cc-notify">
-        <p class="cc-notify-head">Meet <b>vlad solov</b> — 18 yrs on the metal, now directing agent swarms. Start the conversation with <a href="#contact" class="cmd">/lets-talk</a>.</p>
-        <p class="cc-notify-sub"><span class="tee">└</span><span class="accept">⏵⏵</span>accept edits on · robotics · edge-ai · defense autonomy · agentic engineering</p>
-        <p class="cc-notify-sub"><span class="tee">└</span><span class="ok">●</span>available now · staff / principal ic-architect · israel / on-site / hybrid</p>
-      </div>
     </div>
   </div>
 </header>
@@ -697,35 +679,35 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
     <p class="lede">Five tools that operate as one self-improving loop on a single Linux workstation I control. No cloud, no telemetry, no lock-in. One shared artifact — a plain-markdown plan — authored, reviewed, executed, and operated without ever being re-keyed.</p>
 
     <div class="pipe">
-      <div class="node"><span class="n">solSeed</span><span class="s">author</span></div>
+      <div class="node"><span class="n">bilbo</span><span class="s">author</span></div>
       <span class="arrow">→</span>
-      <div class="node"><span class="n">mdPlanner</span><span class="s">review</span></div>
+      <div class="node"><span class="n">elrond</span><span class="s">review</span></div>
       <span class="arrow">→</span>
-      <div class="node"><span class="n">anvilon</span><span class="s">run</span></div>
+      <div class="node"><span class="n">eregion</span><span class="s">run</span></div>
       <span class="arrow">→</span>
-      <div class="node"><span class="n">resman</span><span class="s">operate</span></div>
+      <div class="node"><span class="n">gondor</span><span class="s">operate</span></div>
       <span class="loop">&nbsp;↺ lessons → </span>
       <div class="node"><span class="n">gandalf</span><span class="s">substrate</span></div>
     </div>
 
     <div class="tools">
       <div class="tool">
-        <div class="head"><span class="name">solSeed</span><span class="stage">author</span></div>
+        <div class="head"><span class="name">bilbo</span><span class="stage">author</span></div>
         <span class="role">where a plan is born</span>
         <p class="desc">Interviews me, stretches the idea for the things I always forget, composes a complete plan from a reusable block library, and scores its completeness — so work starts fully specified, not half-baked.</p>
       </div>
       <div class="tool">
-        <div class="head"><span class="name">mdPlanner</span><span class="stage">review</span></div>
+        <div class="head"><span class="name">elrond</span><span class="stage">review</span></div>
         <span class="role">the review desk</span>
         <p class="desc">Annotate that plan in place with typed, colour-coded notes — question · remark · wrong · fix — then stamp approve / request-changes. A real quality gate, stored as visible markdown.</p>
       </div>
       <div class="tool">
-        <div class="head"><span class="name">anvilon</span><span class="stage">run</span></div>
+        <div class="head"><span class="name">eregion</span><span class="stage">run</span></div>
         <span class="role">where plans are forged into code</span>
         <p class="desc">Forges the approved plan into code via an isolated multi-agent swarm in git worktrees, merged under an owned-files invariant — steered live from a cockpit, not watched from a camera.</p>
       </div>
       <div class="tool">
-        <div class="head"><span class="name">resman</span><span class="stage">operate</span></div>
+        <div class="head"><span class="name">gondor</span><span class="stage">operate</span></div>
         <span class="role">the operations panel</span>
         <p class="desc">Schedule, monitor, and terminal-into the running systems and the knowledge vaults around them — embedded live terminals, a crash-recoverable task manager, a cron scheduler.</p>
       </div>
