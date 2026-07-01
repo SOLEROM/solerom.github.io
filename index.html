@@ -87,13 +87,31 @@ code { font-family:var(--font-mono); background:var(--bg-inset); padding:.1em .4
   font-family:var(--font-display); font-weight:600; font-size:1.05rem;
   color:var(--fg); letter-spacing:.01em; white-space:nowrap;
 }
-.nav .links { display:flex; gap:1.1rem; margin-left:auto; }
+.nav .links { display:flex; align-items:center; gap:1rem; margin-left:auto; }
 .nav a.nl {
   color:var(--muted); font-family:var(--font-mono); font-size:.85rem; white-space:nowrap;
 }
 .nav a.nl:hover { color:var(--fg); text-decoration:none; }
 .nav .sep { color:var(--faint); }
-@media (max-width:760px){ .nav .links .opt { display:none; } }
+/* prominent social box-buttons — bigger, bolder, distinct colors */
+.nav .socials { display:flex; align-items:center; gap:.6rem; margin-left:.3rem; padding-left:1rem; border-left:1px solid var(--border); }
+.nav a.btn-nav {
+  display:inline-flex; align-items:center; gap:.4rem; white-space:nowrap;
+  padding:.42rem .95rem; border-radius:var(--radius-md);
+  font-family:var(--font-mono); font-weight:700; font-size:.9rem; letter-spacing:.01em;
+  border:1px solid transparent;
+  transition:filter var(--ease-fast),background var(--ease-fast),color var(--ease-fast),box-shadow var(--ease-fast),border-color var(--ease-fast);
+}
+.nav a.btn-nav:hover { text-decoration:none; }
+.nav a.btn-nav.gh { background:var(--status-ok-bg); border-color:var(--green-500); color:var(--green-200); }
+.nav a.btn-nav.gh:hover { background:var(--accent); border-color:var(--accent); color:var(--on-accent); box-shadow:var(--glow-accent); }
+.nav a.btn-nav.li { background:rgba(59,130,246,.15); border-color:#3b82f6; color:#93b8f5; }
+.nav a.btn-nav.li:hover { background:#3b82f6; border-color:#3b82f6; color:#fff; box-shadow:0 0 12px rgba(59,130,246,.45); }
+@media (max-width:760px){
+  .nav .links .opt { display:none; }
+  .nav .socials { padding-left:0; border-left:none; margin-left:0; }
+  .nav a.btn-nav { padding:.36rem .7rem; font-size:.8rem; }
+}
 
 /* ── layout ──────────────────────────────────────────── */
 .wrap { max-width:var(--container); margin:0 auto; padding:0 var(--space-6); }
@@ -296,13 +314,38 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
 .job h3 { margin:.25rem 0 .35rem; font-size:var(--text-md); color:var(--fg); }
 .job p { margin:0; color:var(--muted); font-size:var(--text-sm); line-height:1.55; max-width:72ch; }
 
-/* ── creds ───────────────────────────────────────────── */
-.creds { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6); }
-@media (max-width:760px){ .creds{ grid-template-columns:1fr; } }
-.cred-group .k { font-family:var(--font-mono); font-size:var(--text-2xs); text-transform:uppercase; letter-spacing:var(--tracking-label); color:var(--muted); display:block; margin-bottom:.6rem; }
+/* ── kit & credentials ───────────────────────────────── */
+/* top: stack cloud (main) + smaller claude-code cloud */
+.kit-top { display:grid; grid-template-columns:1.7fr 1fr; gap:var(--space-4); margin:0 0 var(--space-8); }
+@media (max-width:820px){ .kit-top{ grid-template-columns:1fr; } }
+.stackcard { background:var(--card); border:1px solid var(--border); border-radius:var(--radius-xl); padding:1.15rem 1.25rem; }
+.stackcard.cc { border-color:var(--claude-dim); background:linear-gradient(180deg, rgba(217,119,87,.06), rgba(217,119,87,.01)), var(--card); }
+.stackcard .k { font-family:var(--font-mono); font-size:var(--text-2xs); text-transform:uppercase; letter-spacing:var(--tracking-label); color:var(--muted); display:flex; align-items:center; gap:.4rem; margin-bottom:.75rem; }
+.stackcard.cc .k { color:var(--claude-soft); }
+.stackcard.cc .k .spark { color:var(--claude); text-transform:none; }
 .chips { display:flex; flex-wrap:wrap; gap:.4rem; }
 .chip { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--green-200); background:var(--bg-inset); border:1px solid var(--border); border-radius:var(--radius-sm); padding:.2rem .55rem; }
-.edu { color:var(--muted); font-size:var(--text-sm); line-height:1.6; }
+.chip.cc { color:var(--claude-soft); border-color:var(--claude-dim); }
+
+/* main: recent training as a two-column record-style timeline */
+.train-h { display:block; font-family:var(--font-mono); font-size:var(--text-2xs); text-transform:uppercase; letter-spacing:var(--tracking-label); color:var(--accent); margin:0 0 var(--space-6); }
+.train-grid { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-8); }
+@media (max-width:760px){ .train-grid{ grid-template-columns:1fr; gap:var(--space-6); } }
+.train-col { border-left:1px solid var(--border-strong); margin-left:.4rem; padding-left:1.4rem; display:grid; gap:1.4rem; align-content:start; }
+.crs { position:relative; }
+.crs::before { content:""; position:absolute; left:calc(-1.4rem - 1px); top:.45rem; width:9px; height:9px; border-radius:50%; background:var(--bg); border:2px solid var(--border-strong); transform:translateX(-50%); }
+.crs.now::before { background:var(--accent); border-color:var(--accent); box-shadow:0 0 0 3px var(--green-glow); }
+.crs .meta { display:flex; flex-wrap:wrap; gap:.5rem; align-items:baseline; }
+.crs .yr { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--accent); }
+.crs .org { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--muted); }
+.crs h3 { margin:.25rem 0 .35rem; font-size:var(--text-md); color:var(--fg); }
+.crs p { margin:0; color:var(--muted); font-size:var(--text-sm); line-height:1.55; max-width:46ch; }
+
+/* footer: education + aim, compact */
+.creds { display:grid; grid-template-columns:1fr 1fr; gap:var(--space-6); margin:var(--space-8) 0 0; padding-top:var(--space-6); border-top:1px solid var(--border); }
+@media (max-width:760px){ .creds{ grid-template-columns:1fr; } }
+.cred-group .k { font-family:var(--font-mono); font-size:var(--text-2xs); text-transform:uppercase; letter-spacing:var(--tracking-label); color:var(--muted); display:block; margin-bottom:.6rem; }
+.edu { color:var(--muted); font-size:var(--text-sm); line-height:1.6; margin:0; }
 .edu b { color:var(--fg); font-family:var(--font-mono); font-weight:600; }
 
 /* ── footer / contact ────────────────────────────────── */
@@ -327,21 +370,27 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <nav class="nav">
   <span class="brand">vlad·solov<span class="cursor">▮</span></span>
   <div class="links">
-    <a class="nl opt" href="#track">track</a>
-    <a class="nl opt" href="#shift">shift</a>
-    <a class="nl opt" href="#workbench">workbench</a>
-    <a class="nl" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github&nbsp;→</a>
-    <a class="nl" href="https://www.linkedin.com/in/vlad-solov-884a0428/" target="_blank" rel="noopener">linkedin&nbsp;→</a>
+    <a class="nl opt" href="#top">hi</a>
+    <a class="nl opt" href="#track">work</a>
+    <a class="nl opt" href="#creds">learn</a>
+    <a class="nl opt" href="#oldarea">old</a>
+    <a class="nl opt" href="#shift">new</a>
+    <a class="nl opt" href="#workbench">bench</a>
+    <a class="nl opt" href="#contact">connect</a>
+    <span class="socials">
+      <a class="btn-nav gh" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github&nbsp;↗</a>
+      <a class="btn-nav li" href="https://www.linkedin.com/in/vlad-solov-884a0428/" target="_blank" rel="noopener">linkedin&nbsp;↗</a>
+    </span>
   </div>
 </nav>
 
 <!-- ───────────────── hero ───────────────── -->
-<header class="hero">
+<header class="hero" id="top">
   <div class="wrap">
     <div class="term cc">
       <div class="term-bar">
         <span class="term-dot live"></span><span class="term-dot"></span><span class="term-dot"></span>
-        <span class="cc-brand"><span class="spark">✻</span> claude code</span>
+        <span class="cc-brand"><span class="spark">✻</span> solagent</span>
         <span class="path">~/who-is-vlad</span>
       </div>
       <div class="term-body">
@@ -385,7 +434,7 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <!-- ───────────────── the record ───────────────── -->
 <section id="track">
   <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> the record</span>
+    <span class="kicker"><span class="hash">#</span> my main resume</span>
     <h2 class="title">18 years on the metal</h2>
     <p class="lede">Defense C++/CUDA simulation · real-time embedded (Trophy APS, airborne EW) · embedded-security team lead · BSP / board bring-up · edge AI across every major accelerator, into drone-swarm autonomy.</p>
 
@@ -429,10 +478,94 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
   </div>
 </section>
 
+<!-- ───────────────── kit & credentials ───────────────── -->
+<section id="creds">
+  <div class="wrap">
+    <span class="kicker"><span class="hash">#</span> top trainings</span>
+    <h2 class="title">depth, declared — and kept current</h2>
+    <p class="lede">The formal training I keep deliberately current — and the degree it all sits on.</p>
+
+    <span class="train-h">recent training — kept deliberately current</span>
+    <div class="train-grid">
+      <div class="train-col">
+        <div class="crs now">
+          <div class="meta"><span class="yr">2025</span><span class="org">DevExpress</span></div>
+          <h3>Software Architecture</h3>
+          <p>Design patterns, system decomposition, and architectural decision-making — the formal frame under the director role.</p>
+        </div>
+        <div class="crs">
+          <div class="meta"><span class="yr">2024 · 300h</span><span class="org">Technion</span></div>
+          <h3>AI Developer Program</h3>
+          <p>A 300-hour intensive across modern AI/ML development end to end — the grounding under the shift to AI-directed engineering.</p>
+        </div>
+        <div class="crs">
+          <div class="meta"><span class="yr">2021</span><span class="org">binary RE</span></div>
+          <h3>Reverse Engineering w/ Ghidra</h3>
+          <p>Static and dynamic binary reverse engineering with Ghidra — sharpening the embedded-security toolset.</p>
+        </div>
+      </div>
+      <div class="train-col">
+        <div class="crs">
+          <div class="meta"><span class="yr">2020</span><span class="org">NewAE · hardware</span></div>
+          <h3>ChipWhisperer Hardware Hacking</h3>
+          <p>Side-channel power analysis and fault injection against embedded targets on the ChipWhisperer platform.</p>
+        </div>
+        <div class="crs">
+          <div class="meta"><span class="yr">cert</span><span class="org">Linux Foundation</span></div>
+          <h3>Linux Device Drivers</h3>
+          <p>Kernel-space device-driver development — the discipline under years of BSP and board bring-up.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="creds">
+      <div class="cred-group">
+        <span class="k">education</span>
+        <p class="edu"><b>B.Sc. Mechanical Engineering, Robotics Minor</b><br>Ben-Gurion University of the Negev · 2004–2008<br>Core mechanical engineering plus a robotics minor in control, kinematics, sensors, actuators, and multidisciplinary system design.</p>
+      </div>
+      <div class="cred-group">
+        <span class="k">domains aimed at</span>
+        <p class="edu">The intersection of <b>AI-directed engineering tooling</b>, <b>robotics / edge AI</b>, and <b>defense / autonomy</b>. The best roles touch two of the three.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────── the old area ───────────────── -->
+<section id="oldarea">
+  <div class="wrap">
+    <span class="kicker"><span class="hash">#</span> the old era</span>
+    <h2 class="title">the stack the hard parts are written in</h2>
+    <p class="lede">The stack I earned on the metal, and the newer stack I now direct agents with — eighteen years, mapped.</p>
+
+    <div class="kit-top">
+      <div class="stackcard">
+        <span class="k">stack · on the metal</span>
+        <div class="chips">
+          <span class="chip">C / C++</span><span class="chip">CUDA</span><span class="chip">embedded Linux</span>
+          <span class="chip">board bring-up</span><span class="chip">kernel / drivers</span><span class="chip">Yocto / BSP</span>
+          <span class="chip">VxWorks / RTOS</span><span class="chip">Zynq · FPGA</span><span class="chip">i.MX · STM32 · Qualcomm</span>
+          <span class="chip">Jetson</span><span class="chip">Hailo</span><span class="chip">Coral</span><span class="chip">Rockchip</span><span class="chip">ST N6</span>
+          <span class="chip">edge AI / NPU</span><span class="chip">V2V · distributed algos</span>
+          <span class="chip">reverse engineering</span><span class="chip">SDR / RF</span>
+        </div>
+      </div>
+      <div class="stackcard cc">
+        <span class="k"><span class="spark">✻</span> the new stack · claude code</span>
+        <div class="chips">
+          <span class="chip cc">AI-directed engineering</span><span class="chip cc">multi-agent swarms</span>
+          <span class="chip cc">git-worktree isolation</span><span class="chip cc">plan-driven dev</span>
+          <span class="chip cc">MCP · agents · skills</span><span class="chip cc">local-first · no-cloud</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ───────────────── the shift ───────────────── -->
 <section id="shift">
   <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> the new area</span>
+    <span class="kicker"><span class="hash">#</span> the new era</span>
     <h2 class="title">something changed in how software gets built</h2>
     <p class="lede">AI-directed engineering — not "AI-assisted coding." My output is no longer lines of code; it's designed systems that produce code correctly and repeatedly.</p>
     <div class="prose">
@@ -447,7 +580,7 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <!-- ───────────────── workbench ───────────────── -->
 <section id="workbench">
   <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> proof of work</span>
+    <span class="kicker"><span class="hash">#</span> workbench</span>
     <h2 class="title">the workbench — a closed-loop AI-development organism</h2>
     <p class="lede">Five tools that operate as one self-improving loop on a single Linux workstation I control. No cloud, no telemetry, no lock-in. One shared artifact — a plain-markdown plan — authored, reviewed, executed, and operated without ever being re-keyed.</p>
 
@@ -502,42 +635,6 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
       <li><b>cockpits, not cameras</b> — every running agent is interruptible and injectable; I refuse to lose visibility on a running system.</li>
       <li><b>knowledge compounds</b> — lessons become blocks; blocks make the next plan better. My standards became infrastructure.</li>
     </ul>
-  </div>
-</section>
-
-<!-- ───────────────── credentials ───────────────── -->
-<section id="creds">
-  <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> kit &amp; credentials</span>
-    <h2 class="title">depth, declared</h2>
-    <div class="creds">
-      <div class="cred-group">
-        <span class="k">stack</span>
-        <div class="chips">
-          <span class="chip">C / C++</span><span class="chip">CUDA</span><span class="chip">embedded Linux</span>
-          <span class="chip">board bring-up</span><span class="chip">kernel / drivers</span><span class="chip">Yocto / BSP</span>
-          <span class="chip">VxWorks / RTOS</span><span class="chip">Zynq · FPGA</span><span class="chip">i.MX · STM32 · Qualcomm</span>
-          <span class="chip">Jetson</span><span class="chip">Hailo</span><span class="chip">Coral</span><span class="chip">Rockchip</span><span class="chip">ST N6</span>
-          <span class="chip">edge AI / NPU</span><span class="chip">V2V · distributed algos</span>
-          <span class="chip">reverse engineering</span><span class="chip">SDR / RF</span>
-          <span class="chip">multi-agent systems</span><span class="chip">AI-directed engineering</span>
-        </div>
-        <span class="k" style="margin-top:1.4rem;">recent training</span>
-        <div class="chips">
-          <span class="chip">Software Architecture · DevExpress · 2025</span>
-          <span class="chip">AI Developer Program · Technion · 2024 · 300h</span>
-          <span class="chip">Reverse Engineering w/ Ghidra · 2021</span>
-          <span class="chip">ChipWhisperer hardware hacking · 2020</span>
-          <span class="chip">Linux device drivers · Linux Foundation</span>
-        </div>
-      </div>
-      <div class="cred-group">
-        <span class="k">education</span>
-        <p class="edu"><b>B.Sc. Mechanical Engineering, Robotics Minor</b><br>Ben-Gurion University of the Negev · 2004–2008<br>Core mechanical engineering plus a robotics minor in control, kinematics, sensors, actuators, and multidisciplinary system design.</p>
-        <span class="k" style="margin-top:1.4rem;">domains aimed at</span>
-        <p class="edu">The intersection of <b>AI-directed engineering tooling</b>, <b>robotics / edge AI</b>, and <b>defense / autonomy</b>. The best roles touch two of the three.</p>
-      </div>
-    </div>
   </div>
 </section>
 
