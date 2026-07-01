@@ -217,6 +217,7 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
 .cc-block { display:flex; flex-direction:column; gap:.3rem; }
 .cc-h { margin:0; font-family:var(--font-mono); font-weight:700; font-size:var(--text-sm); letter-spacing:.02em; color:var(--claude-soft); }
 .cc-line { margin:0; font-family:var(--font-mono); font-size:var(--text-xs); line-height:1.55; color:var(--log-stdout); }
+.cc-open { font-weight:700; color:var(--log-ok); }
 .cc-boot .cmd { color:var(--claude-soft); }
 .cc-hr { height:1px; background:linear-gradient(90deg, rgba(217,119,87,.4), transparent); margin:.15rem 0; }
 .cc-more { display:inline-block; margin:.15rem 0 0; font-family:var(--font-mono); font-size:var(--text-xs); font-style:italic; color:var(--faint); }
@@ -291,12 +292,20 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
 .tool .role { color:var(--green-200); font-size:var(--text-sm); font-family:var(--font-mono); }
 .tool .desc { color:var(--muted); font-size:var(--text-sm); line-height:1.5; }
 
-.principles { list-style:none; margin:var(--space-6) 0 0; padding:0; display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:.6rem; }
+.principles { list-style:none; margin:var(--space-6) 0 0; padding:0; display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; }
 .principles li {
-  padding:.7rem .9rem; border:1px solid var(--border); border-radius:var(--radius-md);
+  padding:.7rem .9rem .7rem 1rem; border:1px solid var(--border); border-left-width:3px; border-radius:var(--radius-md);
   background:var(--bg-inset); color:var(--muted); font-size:var(--text-sm); line-height:1.45;
 }
-.principles li b { color:var(--green-200); font-family:var(--font-mono); font-weight:600; }
+.principles li b { font-family:var(--font-mono); font-weight:600; }
+/* distinct accent per principle so the row lifts off the dark section above */
+.principles li:nth-child(1) { border-color:var(--green-700); border-left-color:var(--green-400); background:var(--status-ok-bg); }
+.principles li:nth-child(1) b { color:var(--green-200); }
+.principles li:nth-child(2) { border-color:rgba(69,216,224,.35); border-left-color:var(--status-run); background:var(--status-run-bg); }
+.principles li:nth-child(2) b { color:var(--status-run); }
+.principles li:nth-child(3) { border-color:var(--claude-dim); border-left-color:var(--claude); background:var(--claude-glow); }
+.principles li:nth-child(3) b { color:var(--claude-soft); }
+@media (max-width:760px){ .principles { grid-template-columns:1fr; } }
 
 /* ── looking-for ─────────────────────────────────────── */
 .filterbar { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:var(--space-4); margin:0 0 var(--space-8); }
@@ -444,7 +453,7 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
               <p class="cc-h">What's new</p>
               <p class="cc-line">Now directing agent swarms — I design the system; the agents execute under control.</p>
               <p class="cc-line">Shipped a plan → review → run → operate workbench that keeps speed honest.</p>
-              <p class="cc-line">Open to the next challenge — staff / principal IC-architect, Israel.</p>
+              <p class="cc-line"><b class="cc-open">Open to the next challenge</b>.</p>
               <a class="cc-more" href="#contact"><span class="cmd">/lets-talk</span> for more →</a>
             </div>
           </div>
@@ -725,7 +734,6 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 
     <ul class="principles">
       <li><b>nothing launches blindly</b> — plan → review → approve → launch is enforced law, the same real-time discipline I carried from defense black-box and EW work.</li>
-      <li><b>the plan is plain markdown</b> — one human-readable dialect every tool speaks; no database hiding the truth.</li>
       <li><b>cockpits, not cameras</b> — every running agent is interruptible and injectable; I refuse to lose visibility on a running system.</li>
       <li><b>knowledge compounds</b> — lessons become blocks; blocks make the next plan better. My standards became infrastructure.</li>
     </ul>
