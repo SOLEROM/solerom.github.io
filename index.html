@@ -34,6 +34,8 @@
   --status-ok-bg:rgba(54,201,122,.13); --status-run-bg:rgba(69,216,224,.13);
   --status-warn-bg:rgba(233,185,122,.13); --status-night-bg:rgba(179,164,255,.16);
   --log-bg:#050807; --log-stdout:#b9d8c2; --log-ok:#7df2a8;
+  /* claude code accent */
+  --claude:#d97757; --claude-soft:#e0987c; --claude-dim:#b8613f; --claude-glow:rgba(217,119,87,.16);
   /* type */
   --font-mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
@@ -168,6 +170,40 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
   font-family:var(--font-mono); font-size:var(--text-2xs); color:var(--faint);
 }
 .term-foot .ok { color:var(--status-ok); }
+
+/* ── claude code chrome (hero terminal only) ─────────── */
+.spark { color:var(--claude); text-shadow:0 0 10px var(--claude-glow); }
+.term.cc { box-shadow:var(--shadow-menu), 0 0 0 1px rgba(217,119,87,.08); }
+.term.cc .term-bar { gap:.5rem; }
+.term-bar .cc-brand {
+  display:inline-flex; align-items:center; gap:.4rem;
+  font-family:var(--font-mono); font-size:var(--text-2xs); letter-spacing:.04em;
+  color:var(--muted);
+}
+.cc-welcome {
+  display:flex; align-items:flex-start; gap:.7rem;
+  padding:.8rem 1rem; margin-bottom:1.7rem;
+  border:1px solid var(--claude-dim); border-radius:var(--radius-md);
+  background:linear-gradient(180deg, rgba(217,119,87,.08), rgba(217,119,87,.02));
+}
+.cc-welcome .spark { font-size:1.05rem; line-height:1.25; flex:none; }
+.cc-welcome-txt { display:flex; flex-direction:column; gap:.25rem; font-family:var(--font-mono); }
+.cc-w-title { color:var(--fg); font-size:var(--text-sm); font-weight:600; letter-spacing:.02em; }
+.cc-w-sub { color:var(--faint); font-size:var(--text-2xs); }
+.cc-w-sub .cmd { color:var(--claude-soft); }
+.cc-w-sub .cwd { color:var(--muted); }
+.cc-input {
+  display:flex; align-items:center; gap:.6rem;
+  margin:1.6rem 0 1.2rem; padding:.62rem .85rem;
+  border:1px solid var(--border-strong); border-radius:var(--radius-md);
+  background:var(--bg-inset); font-family:var(--font-mono); font-size:var(--text-sm);
+}
+.cc-input .sigil { color:var(--accent); font-weight:700; }
+.cc-input .typed { color:var(--log-stdout); }
+.cc-input .caret { color:var(--accent); margin-left:-.25rem; }
+.pitch.reply { display:flex; gap:.6rem; align-items:flex-start; }
+.pitch.reply .bullet { flex:none; color:var(--claude); line-height:var(--leading-body); }
+.term-foot .accept { color:var(--claude); letter-spacing:-.06em; margin-right:.15rem; }
 @media (max-width:560px){ .term-mark{ font-size:1.9rem; } .term-body{ padding:1.6rem 1.25rem; } }
 
 /* ── stat tiles ──────────────────────────────────────── */
@@ -291,10 +327,9 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <nav class="nav">
   <span class="brand">vlad·solov<span class="cursor">▮</span></span>
   <div class="links">
+    <a class="nl opt" href="#track">track</a>
     <a class="nl opt" href="#shift">shift</a>
     <a class="nl opt" href="#workbench">workbench</a>
-    <a class="nl opt" href="#looking">looking-for</a>
-    <a class="nl opt" href="#track">track</a>
     <a class="nl" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github&nbsp;→</a>
     <a class="nl" href="https://www.linkedin.com/in/vlad-solov-884a0428/" target="_blank" rel="noopener">linkedin&nbsp;→</a>
   </div>
@@ -303,17 +338,27 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <!-- ───────────────── hero ───────────────── -->
 <header class="hero">
   <div class="wrap">
-    <div class="term">
+    <div class="term cc">
       <div class="term-bar">
         <span class="term-dot live"></span><span class="term-dot"></span><span class="term-dot"></span>
-        <span class="path">~/who-is-vlad — bash</span>
+        <span class="cc-brand"><span class="spark">✻</span> claude code</span>
+        <span class="path">~/who-is-vlad</span>
       </div>
       <div class="term-body">
+
+        <div class="cc-welcome">
+          <span class="spark">✻</span>
+          <div class="cc-welcome-txt">
+            <span class="cc-w-title">welcome to claude code</span>
+            <span class="cc-w-sub"><span class="cmd">/help</span> for shortcuts &nbsp;·&nbsp; cwd <span class="cwd">~/who-is-vlad</span></span>
+          </div>
+        </div>
+
         <div class="term-mark">vlad solov<span class="cursor">▮</span></div>
         <p class="term-role">embedded &amp; edge-AI architect · director of agent swarms · 18 yrs on the metal</p>
 
-        <p class="prompt"><span class="sigil">$</span><span class="typed">whoami --next-role</span></p>
-        <p class="pitch">For years I built real-time systems that run on actual metal — embedded Linux, board bring-up, firmware, edge-AI, robotics, defense. Now I build the layer above: <span class="hl">I design the system, the contracts, and the cockpit that lets agents execute under control.</span> They're the hands. I'm the architecture, the standard, and the judgment that keeps speed from becoming a fast, confident mess.</p>
+        <div class="cc-input"><span class="sigil">&gt;</span><span class="typed">whoami --next-role</span><span class="caret cursor">▮</span></div>
+        <p class="pitch reply"><span class="bullet">⏺</span><span>For years I built real-time systems that run on actual metal — embedded Linux, board bring-up, firmware, edge-AI, robotics, defense. Now I build the layer above: <span class="hl">I design the system, the contracts, and the cockpit that lets agents execute under control.</span> They're the hands. I'm the architecture, the standard, and the judgment that keeps speed from becoming a fast, confident mess.</span></p>
 
         <div class="hero-tags">
           <span class="badge run"><span class="dot pulse"></span>open to the next challenge</span>
@@ -323,13 +368,13 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
         </div>
 
         <div class="hero-actions">
-          <a class="btn" href="#looking">what i'm looking for →</a>
+          <a class="btn" href="#contact">let's talk →</a>
           <a class="btn secondary" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github</a>
           <a class="btn secondary" href="https://www.linkedin.com/in/vlad-solov-884a0428/" target="_blank" rel="noopener">linkedin</a>
         </div>
 
         <div class="term-foot">
-          <span>robotics · edge-ai · defense autonomy · agentic engineering</span>
+          <span><span class="accept">⏵⏵</span> accept edits on &nbsp;·&nbsp; robotics · edge-ai · defense autonomy · agentic engineering</span>
           <span><span class="ok">●</span> available</span>
         </div>
       </div>
@@ -337,17 +382,49 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
   </div>
 </header>
 
-<!-- ───────────────── signal / stats ───────────────── -->
-<section id="signal">
+<!-- ───────────────── the record ───────────────── -->
+<section id="track">
   <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> signal</span>
-    <h2 class="title">the one sentence I'm selling</h2>
-    <p class="lede">I design the system that directs the agents — and I can vouch, from 18 years of low-level, real-time, product-grade engineering, for whether what they produce is actually correct.</p>
-    <div class="stats">
-      <div class="stat"><div class="num">18 yrs</div><div class="lab">low-level, real-time, product-grade engineering — defense, embedded, edge AI</div></div>
-      <div class="stat"><div class="num">5 tools</div><div class="lab">a closed-loop, local-first AI-development workbench I designed and directed agents to build</div></div>
-      <div class="stat"><div class="num">6+ NPUs</div><div class="lab">edge AI brought up across Jetson · Hailo · Coral · Rockchip · Qualcomm · ST&nbsp;N6</div></div>
-      <div class="stat"><div class="num">team lead</div><div class="lab">built an embedded-security domain from scratch; owned full edge-AI tracks end to end</div></div>
+    <span class="kicker"><span class="hash">#</span> the record</span>
+    <h2 class="title">18 years on the metal</h2>
+    <p class="lede">Defense C++/CUDA simulation · real-time embedded (Trophy APS, airborne EW) · embedded-security team lead · BSP / board bring-up · edge AI across every major accelerator, into drone-swarm autonomy.</p>
+
+    <div class="timeline">
+      <div class="job now">
+        <div class="meta"><span class="yr">2024 — present</span><span class="org">Government of Israel · Robotics &amp; Edge Division</span></div>
+        <h3>Embedded AI Engineer</h3>
+        <p>Shelf-ready edge-AI products for robotic platforms — board bring-up to full video / audio / RF inference pipelines on Jetson, Hailo, Coral, Rockchip, Qualcomm, ModalAI, and ST&nbsp;N6. Drove a reusable robot processing-host architecture and a drone-swarm system (edge detection · V2V · distributed algorithms), now adding an AI-agent control layer.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2022 — 2024</span><span class="org">Government of Israel · Innovation Division</span></div>
+        <h3>R&amp;D Engineer</h3>
+        <p>Solo skunkworks track: built the org's first NPU-based edge computer-vision platform on i.MX&nbsp;8M Plus — CV inference on the integrated NPU with no AI coprocessor — plus a model zoo and demos that proved feasibility and set product direction.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2018 — 2022</span><span class="org">Government of Israel · Firmware Division</span></div>
+        <h3>Embedded Linux Engineer</h3>
+        <p>BSP and board bring-up for new embedded products across ARM, i.MX, STM32, and Qualcomm — kernel/driver work for RF/wireless, modems, sensors, and storage, complex multi-component flashing, full integration testing, plus low-level Wi-Fi / BT / RF firmware research.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2016 — 2018</span><span class="org">Sigmabit · Cyber Division</span></div>
+        <h3>Embedded Security Researcher &amp; Team Lead</h3>
+        <p>Built the embedded-security domain from scratch and led the team. Firmware and protocol reverse engineering on embedded-Linux devices, kernel debugging, and SDR research — including network-booting custom kernels into closed-filesystem targets to enable kernel-level analysis.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2014 — 2016</span><span class="org">Elbit Systems / Elisra · Aerial EW</span></div>
+        <h3>Embedded Software Engineer</h3>
+        <p>Real-time C++/VxWorks operational software for a miniaturized airborne EW system on CPU+FPGA (Zynq, Altera). Initiated Zynq SoC adoption to drive miniaturization, then joined a cross-company hardware-bring-up excellence team.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2011 — 2014</span><span class="org">IAI Elta · Trophy Active Protection System</span></div>
+        <h3>Embedded Software Developer</h3>
+        <p>Real-time embedded C/C++ on a defense-grade Linux platform for the Trophy active-protection system. Designed and validated a black-box recorder that improved tracking algorithms and supported proving real-time system performance.</p>
+      </div>
+      <div class="job">
+        <div class="meta"><span class="yr">2008 — 2011</span><span class="org">Ministry of Defence / IDF · Survivability Branch</span></div>
+        <h3>C++ Software Developer</h3>
+        <p>Built a distributed, CUDA-accelerated Linux simulation infrastructure for survivability and operational research — 3D/CAD line-of-fire modeling scaled across thousands of scenarios. Turned it into a new line-of-sight situational-awareness capability (innovation award).</p>
+      </div>
     </div>
   </div>
 </section>
@@ -425,101 +502,6 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
       <li><b>cockpits, not cameras</b> — every running agent is interruptible and injectable; I refuse to lose visibility on a running system.</li>
       <li><b>knowledge compounds</b> — lessons become blocks; blocks make the next plan better. My standards became infrastructure.</li>
     </ul>
-  </div>
-</section>
-
-<!-- ───────────────── looking for ───────────────── -->
-<section id="looking">
-  <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> the hunt</span>
-    <h2 class="title">what I'm looking for</h2>
-    <p class="lede">A Staff / Principal IC-architect seat in Israel where robotics / edge / defense and AI-directed engineering both live. Leadership shows up as architecture and standard-setting — not a management title for its own sake.</p>
-
-    <div class="filterbar">
-      <div class="fcard"><span class="k">where</span><span class="v">Israel — on-site / hybrid. Defense-cleared work is an asset, not a problem.</span></div>
-      <div class="fcard"><span class="k">level</span><span class="v">Staff / Principal — an IC architect who designs systems and directs agents.</span></div>
-      <div class="fcard"><span class="k">optimizing for</span><span class="v">Leverage the new area · a hard technical mission · autonomy &amp; broad ownership. Meaning over money.</span></div>
-    </div>
-
-    <div class="roles">
-      <div class="role lead">
-        <span class="rk">1</span>
-        <span class="rt">Staff/Principal Edge-AI Architect — Defense Autonomy</span>
-        <span class="rd">Own the edge-processing + autonomy stack for a drone-swarm / robotics product line — reusable processing host, inference pipelines, V2V and distributed algorithms, with agent leverage in how the team builds it. Hits all three domains at once and sits directly on my current work.</span>
-      </div>
-      <div class="role">
-        <span class="rk">2</span>
-        <span class="rt">Principal Engineer — Agentic / AI-Native Developer Tooling</span>
-        <span class="rd">Help build the product that <em>is</em> the new area — agentic coding systems, multi-agent runners, plan-driven dev harnesses. I'm not a user of these; I designed a five-tool closed-loop workbench from contracts down. My correctness instincts are the differentiator most of this field lacks.</span>
-      </div>
-      <div class="role">
-        <span class="rk">3</span>
-        <span class="rt">Staff Architect — Robotics / Edge-AI Platform (civilian hard-tech)</span>
-        <span class="rd">Define the generic, reusable edge-processing host for a robotics or physical-AI product — "load and run different models, upgrade the unit without redesigning the system" — and modernize how the org builds it with agent leverage.</span>
-      </div>
-      <div class="role">
-        <span class="rk">4</span>
-        <span class="rt">Founding / Early Engineer — AI-Native Hard-Tech Startup</span>
-        <span class="rd">Senior technical anchor on a small team at the edge / robotics / autonomy + AI intersection — set the engineering DNA: plan-driven, gated, closed-loop, locally-owned from day one. The wildcard that jumps to #1 with the right founder.</span>
-      </div>
-    </div>
-
-    <div class="walk">
-      <span class="k">what makes me walk away</span>
-      <ul>
-        <li>Pure hands-on-keyboard IC with no agent leverage — ignoring the shift I've built.</li>
-        <li>Heavy process, narrow scope, no room to architect.</li>
-        <li>Cloud-only / pure SaaS with no embedded, edge, or low-level substance.</li>
-        <li>A team that treats AI-directed engineering as a toy or a threat.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ───────────────── track ───────────────── -->
-<section id="track">
-  <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> the record</span>
-    <h2 class="title">18 years on the metal</h2>
-    <p class="lede">Defense C++/CUDA simulation · real-time embedded (Trophy APS, airborne EW) · embedded-security team lead · BSP / board bring-up · edge AI across every major accelerator, into drone-swarm autonomy.</p>
-
-    <div class="timeline">
-      <div class="job now">
-        <div class="meta"><span class="yr">2024 — present</span><span class="org">Government of Israel · Robotics &amp; Edge Division</span></div>
-        <h3>Embedded AI Engineer</h3>
-        <p>Shelf-ready edge-AI products for robotic platforms — board bring-up to full video / audio / RF inference pipelines on Jetson, Hailo, Coral, Rockchip, Qualcomm, ModalAI, and ST&nbsp;N6. Drove a reusable robot processing-host architecture and a drone-swarm system (edge detection · V2V · distributed algorithms), now adding an AI-agent control layer.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2022 — 2024</span><span class="org">Government of Israel · Innovation Division</span></div>
-        <h3>R&amp;D Engineer</h3>
-        <p>Solo skunkworks track: built the org's first NPU-based edge computer-vision platform on i.MX&nbsp;8M Plus — CV inference on the integrated NPU with no AI coprocessor — plus a model zoo and demos that proved feasibility and set product direction.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2018 — 2022</span><span class="org">Government of Israel · Firmware Division</span></div>
-        <h3>Embedded Linux Engineer</h3>
-        <p>BSP and board bring-up for new embedded products across ARM, i.MX, STM32, and Qualcomm — kernel/driver work for RF/wireless, modems, sensors, and storage, complex multi-component flashing, full integration testing, plus low-level Wi-Fi / BT / RF firmware research.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2016 — 2018</span><span class="org">Sigmabit · Cyber Division</span></div>
-        <h3>Embedded Security Researcher &amp; Team Lead</h3>
-        <p>Built the embedded-security domain from scratch and led the team. Firmware and protocol reverse engineering on embedded-Linux devices, kernel debugging, and SDR research — including network-booting custom kernels into closed-filesystem targets to enable kernel-level analysis.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2014 — 2016</span><span class="org">Elbit Systems / Elisra · Aerial EW</span></div>
-        <h3>Embedded Software Engineer</h3>
-        <p>Real-time C++/VxWorks operational software for a miniaturized airborne EW system on CPU+FPGA (Zynq, Altera). Initiated Zynq SoC adoption to drive miniaturization, then joined a cross-company hardware-bring-up excellence team.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2011 — 2014</span><span class="org">IAI Elta · Trophy Active Protection System</span></div>
-        <h3>Embedded Software Developer</h3>
-        <p>Real-time embedded C/C++ on a defense-grade Linux platform for the Trophy active-protection system. Designed and validated a black-box recorder that improved tracking algorithms and supported proving real-time system performance.</p>
-      </div>
-      <div class="job">
-        <div class="meta"><span class="yr">2008 — 2011</span><span class="org">Ministry of Defence / IDF · Survivability Branch</span></div>
-        <h3>C++ Software Developer</h3>
-        <p>Built a distributed, CUDA-accelerated Linux simulation infrastructure for survivability and operational research — 3D/CAD line-of-fire modeling scaled across thousands of scenarios. Turned it into a new line-of-sight situational-awareness capability (innovation award).</p>
-      </div>
-    </div>
   </div>
 </section>
 
