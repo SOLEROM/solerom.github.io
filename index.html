@@ -109,6 +109,8 @@ code { font-family:var(--font-mono); background:var(--bg-inset); padding:.1em .4
 .nav a.btn-nav.gh:hover { background:var(--accent); border-color:var(--accent); color:var(--on-accent); box-shadow:var(--glow-accent); }
 .nav a.btn-nav.li { background:rgba(59,130,246,.15); border-color:#3b82f6; color:#93b8f5; }
 .nav a.btn-nav.li:hover { background:#3b82f6; border-color:#3b82f6; color:#fff; box-shadow:0 0 12px rgba(59,130,246,.45); }
+.nav a.btn-nav.pdf { background:rgba(245,158,11,.15); border-color:#f59e0b; color:#fbd38d; }
+.nav a.btn-nav.pdf:hover { background:#f59e0b; border-color:#f59e0b; color:#1a1208; box-shadow:0 0 12px rgba(245,158,11,.45); }
 @media (max-width:760px){
   .nav .links .opt { display:none; }
   .nav .socials { padding-left:0; border-left:none; margin-left:0; }
@@ -305,6 +307,7 @@ h2.title { font-size:var(--text-xl); margin:0 0 .4rem; color:var(--fg); }
 .principles li:nth-child(2) b { color:var(--status-run); }
 .principles li:nth-child(3) { border-color:var(--claude-dim); border-left-color:var(--claude); background:var(--claude-glow); }
 .principles li:nth-child(3) b { color:var(--claude-soft); }
+.principles.rows { grid-template-columns:1fr; }
 @media (max-width:760px){ .principles { grid-template-columns:1fr; } }
 
 /* ── looking-for ─────────────────────────────────────── */
@@ -405,8 +408,9 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
     <a class="nl opt" href="#workbench">bench</a>
     <a class="nl opt" href="#contact">ping</a>
     <span class="socials">
-      <a class="btn-nav gh" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github&nbsp;↗</a>
+      <a class="btn-nav gh" href="https://github.com/SOLEROM" target="_blank" rel="noopener">github&nbsp;↖</a>
       <a class="btn-nav li" href="https://www.linkedin.com/in/vlad-solov-884a0428/" target="_blank" rel="noopener">linkedin&nbsp;↗</a>
+      <a class="btn-nav pdf" href="vladSolov.pdf" download="vladSolov.pdf">pdf&nbsp;↓</a>
     </span>
   </div>
 </nav>
@@ -743,9 +747,13 @@ footer.foot .wrap { display:flex; flex-wrap:wrap; gap:.5rem 1rem; justify-conten
 <!-- ───────────────── contact ───────────────── -->
 <section id="contact" class="contact">
   <div class="wrap">
-    <span class="kicker"><span class="hash">#</span> connect</span>
-    <h2 class="title">let's talk</h2>
-    <p class="lede">If you're building toward AI-native engineering and want someone who can design the system that directs the agents — and vouch, from the metal up, for whether what they produce is correct — that's the work I want to do next.</p>
+    <span class="kicker"><span class="hash">#</span> off the clock</span>
+    <h2 class="title">interests</h2>
+    <ul class="principles rows" style="margin:0 0 var(--space-8);">
+      <li><b>maker</b> — across materials and methods: pushing hot plastic through a nozzle in 3D, building with wood, metal, glass — welding, cutting, reshaping, blacksmithing — and reusing materials into practical workspaces and tools.</li>
+      <li><b>mentor</b> — young builders through LEGO robotics / FLL, "molding young minds brick by brick" while teaching think, build, test, and improve.</li>
+      <li><b>swim, code, repeat.</b></li>
+    </ul>
 
     <div class="term">
       <div class="term-bar">

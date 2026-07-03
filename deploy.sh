@@ -9,7 +9,7 @@ mkdir -p _build/html
 
 # Copy the static site into the build dir.
 # index.html is the landing page; add more files/globs here as the site grows.
-cp index.html _build/html/
+cp index.html vladSolov.pdf _build/html/
 
 # Publish _build/html to the gh-pages branch and push.
 #   -n  add a .nojekyll file (serve files as-is, skip Jekyll processing)
